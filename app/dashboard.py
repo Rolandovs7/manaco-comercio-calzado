@@ -32,8 +32,8 @@ SA6_NOMBRE = {
 
 # ── Helpers ─────────────────────────────────────────────────────────────────
 @st.cache_data
-def cargar_datos(archivo):
-    df = pd.read_excel(archivo, sheet_name="Base de Datos")
+def cargar_datos(ruta_o_bytes):
+    df = pd.read_excel(ruta_o_bytes, sheet_name="Base de Datos")
     df["Año"] = df["Año"].astype(int)
     df["Código_SA6"] = df["Código_SA6"].astype(str)
     for c in ["Valor_miles_USD", "Cantidad_pares", "Valor_USD", "Valor_USD_por_par"]:
@@ -63,17 +63,19 @@ with st.sidebar:
         help="Hoja 'Base de Datos' con las 10 columnas del caso.",
     )
 
+    ruta_def = Path(__file__).resolve().parents[1] / "data" / "raw" / "Base_de_Datos.xlsx"
+
     if archivo is None:
-        ruta_def = Path(__file__).resolve().parents[1] / "data" / "raw" / "Base_de_Datos.xlsx"
         if ruta_def.exists():
-            with open(ruta_def, "rb") as f:
-                archivo = f
+            fuente = str(ruta_def)
             st.success("✅ Base de datos cargada automáticamente")
         else:
             st.warning("⬆️ Sube el archivo Excel para comenzar.")
             st.stop()
+    else:
+        fuente = archivo
 
-    df, mundo = cargar_datos(archivo)
+    df, mundo = cargar_datos(fuente)
 
     st.divider()
     flujos = st.multiselect(
