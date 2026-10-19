@@ -39,7 +39,10 @@ El informe escrito completo (14 tablas, 3 figuras, 4 estaciones) está en:
 
 📄 [`docs/Informe_Manaco_Ciencia_de_Datos.pdf`](docs/Informe_Manaco_Ciencia_de_Datos.pdf)
 
-## 5. Estructura del repositorio
+## 5. Dashboard interactivo
+Desplegado en Streamlit Cloud — sube el Excel desde el sidebar para activar todos los filtros.
+
+## 6. Estructura del repositorio
 ```
 manaco-comercio-calzado/
 ├── README.md
@@ -69,39 +72,25 @@ manaco-comercio-calzado/
     └── grafico_3_valor_par.png
 ```
 
-## 6. Cómo reproducir
+## 7. Cómo reproducir localmente
 ```bash
-# 1. Crear entorno virtual
-python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
-
-# 2. Instalar dependencias
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
-
-# 3. Copiar el Excel original
 cp /ruta/al/Documento_de_R.xlsx data/raw/Base_de_Datos.xlsx
-
-# 4. Validar la base y generar el CSV procesado
 python src/carga.py
-
-# 5. Ejecutar los notebooks en orden
-jupyter notebook
-
-# 6. Lanzar el dashboard interactivo
 streamlit run app/dashboard.py
 ```
 
-El dashboard se abre automáticamente en http://localhost:8501
-
-## 7. Hallazgos principales
+## 8. Hallazgos principales
 1. **Mercado importador y en expansión:** 18.506 M USD importados vs. 10.917 M USD exportados (déficit de 7.589 M USD); importaciones crecieron 324,3% entre 2020 y 2024.
 2. **Dos juegos comerciales por valor por par:** categorías 640399 y 640411 compiten en el rango 23–27 USD/par; la categoría 640420 (cuero) opera a 41–45 USD/par, casi el doble.
-3. **Valor ≠ cantidad:** Irlanda es 4.ª por valor y 14.ª por pares (42 USD/par); República Checa es 3.ª por pares y 10.ª por valor (9,3 USD/par). Un ranking por una sola métrica oculta la naturaleza del competidor.
+3. **Valor ≠ cantidad:** Irlanda es 4.ª por valor y 14.ª por pares (42 USD/par); República Checa es 3.ª por pares y 10.ª por valor (9,3 USD/par).
 
-## 8. Limitaciones
+## 9. Limitaciones
 - No existen datos internos de Manaco (ventas, costos, inventario, defectos, clientes).
 - La base es de España; no representa el mercado boliviano.
 - El valor por par es valor aduanero, no precio al consumidor.
 
-## 9. Autor
-Rolando Velasco Soliz · Materia: Ciencia de Datos e Inteligencia de Negocios · 6.º Semestre · Octubre 2026
+## 10. Autor
+Rolando Velasco Soliz · Ciencia de Datos e Inteligencia de Negocios · 6.º Semestre · Octubre 2026
