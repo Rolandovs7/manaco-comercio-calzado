@@ -1,0 +1,18 @@
+# Entorno virtual y cachés de Python
+.venv/
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Sistema operativo
+.DS_Store
+
+# Datos procesados (se regeneran con src/carga.py)
+data/processed/*.csv
+!data/processed/.gitkeep
+
+# Imágenes fuera de docs/
+*.png
+!docs/*.png
